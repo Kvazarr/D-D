@@ -1,0 +1,14 @@
+﻿  Source.cpp
+D:\Visual\Проекты\Exam_OOP\Exam\Source.cpp(3,9): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+D:\Visual\Проекты\Exam_OOP\Exam\Story.h(7,9): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+  (компиляция исходного файла "Source.cpp")
+  
+D:\Visual\Проекты\Exam_OOP\Exam\Source.cpp(4,9): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+  Story.cpp
+D:\Visual\Проекты\Exam_OOP\Exam\Story.cpp(4,9): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+D:\Visual\Проекты\Exam_OOP\Exam\Story.h(7,9): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+  (компиляция исходного файла "Story.cpp")
+  
+D:\Visual\Проекты\Exam_OOP\Exam\Story.cpp(109,5): warning C4286: std::logic_error &: перехвачено базовым классом ("std::exception &") в строке 101
+  Создание кода...
+  Exam.vcxproj -> D:\Visual\Проекты\Exam_OOP\Exam\x64\Debug\Exam.exe
