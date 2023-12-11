@@ -10,27 +10,35 @@ class Souls
 protected:
 	int monstersSouls;
 	bool darkSoul;
-	bool bloodySoul;
-	bool saintSoul;
 public:
-	Souls() :monstersSouls(0), darkSoul(false), bloodySoul(false), saintSoul(false) {}
+	Souls() :monstersSouls(0), darkSoul(false) {}
 
 	void Show()const
 	{
-		cout << "<><><><>|Souls Inventory|<><><><>" << endl;
-		cout << "< Monsters souls: " << monstersSouls << endl;
-		cout << "< Soul of Bloody red Dragon: " << bloodySoul << endl;
-		cout << "< Saint souls of the thousand - faced apostol: " << saintSoul << endl;
-		cout << "< Soul of Darkness: " << darkSoul << endl;
-		cout << "<><><><><><><><><><><><><><><><>" << endl;
+		cout << "| <><><>|Souls Inventory|<><><><>" << endl;
+		cout << "| Monsters souls: " << monstersSouls << endl;
+		cout << "| Soul of Darkness: " << darkSoul << endl;
+		cout << "| <><><><><><><><><><><><><><><>" << endl;
 	}
-	int GetMonsterSouls()const
+	int GetMonstersSouls()const
 	{
 		return monstersSouls;
+	}
+	void SetMonstersSouls(int price)
+	{
+		monstersSouls -= price;
 	}
 	int UpMonsterSouls()
 	{
 		return monstersSouls++;
+	}
+	bool GetDarkSoul()const
+	{
+		return darkSoul > 0;
+	}
+	void DarkSoulUp()
+	{
+		darkSoul = true;
 	}
 };
 
@@ -59,6 +67,10 @@ public:
 	{
 		return damageSpell;
 	}
+	string GetName()const
+	{
+		return spellName;
+	}
 };
 
 
@@ -79,6 +91,11 @@ public:
 	int GetDamageWeapon()const
 	{
 		return damageWeapon;
+	}
+	void SetNewSword(string name, int damage)
+	{
+		nameWeapon = name;
+		damageWeapon = damage;
 	}
 };
 
@@ -105,6 +122,32 @@ public:
 	int GetDefence()const
 	{
 		return total;
+	}
+	void SetNewArmor(string name, int helm, int corset, int gloves, int greaves)
+	{
+		nameArmor = name;
+		this->helm = helm;
+		this->corset = corset;
+		this->gloves = gloves;
+		this->greaves = greaves;
+		total = 0;
+		total = total + helm, corset, gloves, greaves;
+	}
+	int GetHelmDef()const
+	{
+		return helm;
+	}
+	int GetCorsetDef()const
+	{
+		return corset;
+	}
+	int GetGlovesDef()const
+	{
+		return corset;
+	}
+	int GetGreavesDef()const
+	{
+		return greaves;
 	}
 };
 
@@ -164,20 +207,20 @@ public:
 	virtual bool IsAlive()const = 0;
 	virtual int GetHP()const = 0;
 	virtual int GetLvl()const = 0;
-	/*virtual string GetSpell()const = 0;*/
 	virtual string GetName()const = 0;
 	virtual int GetEndurance()const = 0;
 	virtual int GetIntl()const = 0;
 	virtual int Attack()const = 0;
 	virtual int AttackSpell() = 0;
+	virtual void HealingSpell() = 0;
 	virtual void SetDamage() = 0;
 	virtual void SetDefence() = 0;
 	virtual void SetSpell(int choice) = 0;
 	virtual void SetEnduranceNegative() = 0;
 	virtual void SetEndurancePositive() = 0;
 	virtual void WithdrawHP(int damage) = 0;
-	virtual void Defend()const = 0;
-	
+	virtual void PointsWithdrawHP(int damage) = 0;
+	virtual void Defend() = 0;
 };
 
 
@@ -210,21 +253,27 @@ public:
 		cout << "| =-=-=-=-=-=->Equipment<-=-=-=-=-=-=" << endl;
 		cout << "| <---Sword--->" << endl;
 		sword.Show();
-		cout << "| _-_Armor_-_" << endl;
+		cout << "| <---Armor--->" << endl;
 		armor.Show();
-		cout << "| /-/Shield\\-\\" << endl;
+		cout << "| <---Shield--->" << endl;
 		shield.Show();
-		cout << "| -->Spell<--" << endl;
+		cout << "| <---Spell--->" << endl;
 		spell.Show();
+		cout << " -------------------------------------" << endl;
+	}
+	void SoulsInventory() const
+	{
 		souls.Show();
 	}
 	void SetDamage() override
 	{
-		damage = damage + sword.GetDamageWeapon() + strength + souls.GetMonsterSouls();
+		damage = 65;
+		damage = damage + sword.GetDamageWeapon() + strength + souls.GetMonstersSouls();
 	}
 	void SetDefence() override
 	{
-		defence = defence + armor.GetDefence() + agility / 2;
+		defence = 5;
+		defence = defence + armor.GetDefence() + agility;
 	}
 	void SetSpell(int choice)override
 	{
@@ -253,23 +302,64 @@ public:
 	{
 		souls.UpMonsterSouls();
 	}
+	void MonsterSoulsOrder(int price)
+	{
+		souls.SetMonstersSouls(price);
+	}
+	bool DarkSoul()const
+	{
+		return souls.GetDarkSoul();
+	}
+	void GainDarkSous()
+	{
+		souls.DarkSoulUp();
+	}
+	void SetMoney(int price)
+	{
+		money -= price;
+	}
+	void Exchange()
+	{
+		money += 2;
+	}
 	void WithdrawHP(int damage) override
 	{
-		hp = hp - (damage - defence);
+		if(damage>0 && damage>= defence)
+			hp = hp - (damage - defence);
+	}
+	void PointsWithdrawHP(int damage) override
+	{
+		int temp = damage - defence;
+		cout << "Damage: " << temp << endl;
 	}
 	void HeroLvlUp(int lvls)
 	{
 		lvl = lvl + lvls;
+		SetLvl();
+		SetDamage();
 	}
 	void SetLvl()
 	{
-		strength = strength + lvl * 2;
-		agility = agility + lvl * 2;
-		intelligence = intelligence + lvl * 2;
+		strength = strength + 2;
+		agility = agility + 2;
+		intelligence = intelligence + 2;
+		hp = hp + 150;
+	}
+	void Resting()
+	{
+		hp = 150;
+		for (int i = 1; i < lvl; i++)
+		{
+			hp += 150;
+		}
 	}
 	bool IsAlive()const override
 	{
 		return hp > 0;
+	}
+	int GetHeroDamage()const
+	{
+		return damage;
 	}
 	int GetHP()const override
 	{
@@ -287,46 +377,106 @@ public:
 	{
 		return intelligence;
 	}
+	int GetStr()const
+	{
+		return strength;
+	}
+	int GetAgl()const
+	{
+		return agility;
+	}
 	string GetName()const override
 	{
 		return name;
 	}
+	int GetMoney()const
+	{
+		return money;
+	}
+	int GetMonsterSouls()const
+	{
+		return souls.GetMonstersSouls();
+	}
+	int GetHelm()const
+	{
+		return armor.GetHelmDef();
+	}
+	int GetCorset()const
+	{
+		return armor.GetCorsetDef();
+	}
+	int GetGloves()const
+	{
+		return armor.GetGlovesDef();
+	}
+	int GetGreaves()const
+	{
+		return armor.GetGreavesDef();
+	}
+	int GetHeroWeaponDamage()const
+	{
+		return sword.GetDamageWeapon();
+	}
+	int GetHeroHeal()const
+	{
+		return spell.GetHeal();
+	}
+	int GetHeroMagicDamage()const
+	{
+		return spell.GetDamage() + damage + intelligence;
+	}
 	int Attack()const override
 	{
-		cout << "Attacking with " << damage << " damage" << endl;
 		return damage;
+	}
+	int GetHeroDefence()const
+	{
+		return defence;
 	}
 	int AttackSpell() override
 	{
-		if (spell.GetHeal() > 0)
-		{
-			cout << "The healing spell restores " << spell.GetHeal() + intelligence + souls.GetMonsterSouls() * 2 << " HP" << endl;
-			hp = hp + spell.GetHeal() + intelligence;
-			return spell.GetHeal() + intelligence + souls.GetMonsterSouls() * 2;
-		}
-		else
-		{
-			cout << "The spell does " << spell.GetDamage() + intelligence + souls.GetMonsterSouls() * 2 << " magic damage" << endl;
-			return spell.GetDamage() + intelligence + souls.GetMonsterSouls() * 2;
-		}
+		cout << "The spell does " << spell.GetDamage() + intelligence + souls.GetMonstersSouls() * 2 << " magic damage" << endl;
+		return spell.GetDamage() + intelligence + souls.GetMonstersSouls() * 2;
 	}
-	void Defend()const override
+	void HealingSpell() override
 	{
+		cout << "The healing spell restores " << spell.GetHeal() + intelligence + souls.GetMonstersSouls() * 2 << " HP" << endl;
+		hp = hp + spell.GetHeal() + intelligence;
+	}
+	void Defend() override
+	{
+		defence = defence + shield.GetDefend();
 		cout << "Hero rises his shield and up defence to " << defence + shield.GetDefend() << endl;
 	}
 	void AfterMine(int time)
 	{
-		if (time >= endurance)
+		if (time <= endurance)
 			endurance -= time;
 		else
 		{
 			endurance = 0;
 		}
 	}
-	/*Spell GetSpell()const override
+	void NewSword(string name, int damageSword)
 	{
-		return spell;
-	}*/
+		sword.SetNewSword(name, damageSword);
+		damage = damage + sword.GetDamageWeapon();
+	}
+	void NewArmor(string name, int helm, int corset, int gloves, int greaves)
+	{
+		armor.SetNewArmor(name, helm, corset, gloves, greaves);
+		defence = defence + armor.GetDefence();
+	}
+	void NewSpell(string name)
+	{
+		for (int i = 0; i < spells.size(); i++)
+		{
+			if (name == spells[i].GetName())
+			{
+				spell = spells[i];
+			}
+		}
+	}
 };
 
 
@@ -336,17 +486,14 @@ protected:
 	Weapon weapon;
 	Armor armor;
 	Spell spell;
-	string power;
 public:
-	Enemy() :Units(), power("No data") {}
-	Enemy(string name, Spell& spell, int lvl, int damage, int endurance, int hp, int str, int agl, int intl, int def, Weapon& weapon, Armor& armor, string power)
-		:Units(name, hp, damage, lvl, endurance, str, intl, agl, def), spell(spell), weapon(weapon), power(power), armor(armor) {}
+	Enemy() :Units() {}
+	Enemy(string name, Spell& spell, int lvl, int damage, int endurance, int hp, int str, int agl, int intl, int def, Weapon& weapon, Armor& armor)
+		:Units(name, hp, damage, lvl, endurance, str, intl, agl, def), spell(spell), weapon(weapon), armor(armor) {}
 
 	void Show()const override
 	{
 		Units::Show();
-		cout << "| =-=-=-=-=-=-=->Power<-=-=-=-=-=-=-=" << endl;
-		cout << "| Power: " << power << endl;
 		cout << "| =-=-=-=-=-=-=->Weapon<-=-=-=-=-=-=-=" << endl;
 		weapon.Show();
 		cout << "| =-=-=-=-=-=-=->Armor<-=-=-=-=-=-=-=" << endl;
@@ -362,11 +509,10 @@ class Boss :public Enemy
 {
 private:
 	vector <Spell> spells;
-	string rage;
 public:
-	Boss(): Enemy(), rage("No data"){}
-	Boss(string name, Spell& spell, int lvl, int damage, int endurance, int hp, int str, int agl, int intl, int def, Weapon& weapon, Armor& armor, string power, string rage)
-		:Enemy(name, spell, lvl, damage, endurance, hp, str, agl, intl, def, weapon, armor, power), rage(rage)
+	Boss(): Enemy(){}
+	Boss(string name, Spell& spell, int lvl, int damage, int endurance, int hp, int str, int agl, int intl, int def, Weapon& weapon, Armor& armor)
+		:Enemy(name, spell, lvl, damage, endurance, hp, str, agl, intl, def, weapon, armor)
 	{
 		spells.push_back(Spell("Easy treatment", 100, 0));
 		spells.push_back(Spell("Medium treatment", 500, 0));
@@ -379,7 +525,6 @@ public:
 	void Show()const override
 	{
 		Enemy::Show();
-		cout << ">>>RAGE MODE: " << rage << endl;
 	}
 	void SetDamage() override
 	{
@@ -387,7 +532,8 @@ public:
 	}
 	void SetDefence() override
 	{
-		defence = defence + armor.GetDefence() + agility / 2;
+		defence = 45;
+		defence = defence + armor.GetDefence() + agility;
 	}
 	void SetSpell(int choice)override
 	{
@@ -410,7 +556,13 @@ public:
 	}
 	void WithdrawHP(int damage) override
 	{
-		hp = hp - (damage - defence);
+		if (damage > 0 && damage >= defence)
+			hp = hp - (damage - defence);
+	}
+	void PointsWithdrawHP(int damage) override
+	{
+		int temp = damage - defence;
+		cout << "Damage: " << temp << endl;
 	}
 	bool IsAlive()const override
 	{
@@ -418,25 +570,21 @@ public:
 	}
 	int Attack()const override
 	{
-		cout << "Attacking with " << damage << " damage" << endl;
 		return damage;
 	}
 	int AttackSpell() override
 	{
-		if (spell.GetHeal() > 0)
-		{
-			cout << "The healing spell restores " << spell.GetHeal() + intelligence << " HP" << endl;
-			hp = hp + spell.GetHeal() + intelligence;
-			return spell.GetHeal() + intelligence;
-		}
-		else
-		{
-			cout << "The spell does " << spell.GetDamage() + intelligence << " magic damage" << endl;
-			return spell.GetDamage() + intelligence;
-		}
+		cout << "The spell does " << spell.GetDamage() + intelligence << " magic damage" << endl;
+		return spell.GetDamage() + intelligence;
 	}
-	void Defend()const override
+	void HealingSpell() override
 	{
+		cout << "The healing spell restores " << spell.GetHeal() + intelligence << " HP" << endl;
+		hp = hp + spell.GetHeal() + intelligence;
+	}
+	void Defend() override
+	{
+		defence += defence / 2;
 		cout << "The opponent regains stamina and raises defense by " << defence + defence / 2 << endl;
 	}
 	int GetHP()const override
@@ -455,13 +603,30 @@ public:
 	{
 		return intelligence;
 	}
-	/*Spell GetSpell()const override
-	{
-		return spell;
-	}*/
 	string GetName()const override
 	{
 		return name;
+	}
+	int GetBossMagicDamage()const
+	{
+		return spell.GetDamage();
+	}
+	int CheckRage()const
+	{
+		return hp / 10;
+	}
+	void RageMode()
+	{
+		cout << "RAGE MODE" << endl;
+		hp * 2;
+		damage * 1.5;
+		strength += 30;
+		agility += 30;
+		intelligence += 30;
+	}
+	int GetBossDamage()const
+	{
+		return damage;
 	}
 };
 
@@ -472,8 +637,8 @@ private:
 	vector<Spell> spells;
 public:
 	Monster():Enemy(){}
-	Monster(string name, Spell& spell, int lvl, int damage, int endurance, int hp, int str, int agl, int intl, int def, Weapon& weapon, Armor& armor,  string power)
-		:Enemy(name, spell, lvl, damage, endurance, hp, str, agl, intl, def, weapon, armor, power)
+	Monster(string name, Spell& spell, int lvl, int damage, int endurance, int hp, int str, int agl, int intl, int def, Weapon& weapon, Armor& armor)
+		:Enemy(name, spell, lvl, damage, endurance, hp, str, agl, intl, def, weapon, armor)
 	{
 		spells.push_back(Spell("Easy treatment", 100, 0));
 		spells.push_back(Spell("Medium treatment", 500, 0));
@@ -489,11 +654,13 @@ public:
 	}
 	void SetDamage() override
 	{
+		damage = 65;
 		damage = damage + weapon.GetDamageWeapon() + strength;
 	}
 	void SetDefence() override
 	{
-		defence = defence + armor.GetDefence() + agility / 2;
+		defence = 5;
+		defence = defence + armor.GetDefence() + agility;
 	}
 	void SetSpell(int choice)override
 	{
@@ -516,7 +683,13 @@ public:
 	}
 	void WithdrawHP(int damage) override
 	{
-		hp = hp - (damage - defence);
+		if (damage > 0 && damage >= defence)
+			hp = hp - (damage - defence);
+	}
+	void PointsWithdrawHP(int damage) override
+	{
+		int temp = damage - defence;
+		cout << "Damage: " << temp << endl;
 	}
 	bool IsAlive()const override
 	{
@@ -524,25 +697,21 @@ public:
 	}
 	int Attack()const override
 	{
-		cout << "Attacking with " << damage << " damage" << endl;
 		return damage;
 	}
 	int AttackSpell() override
 	{
-		if (spell.GetHeal() > 0)
-		{
-			cout << "The healing spell restores " << spell.GetHeal() + intelligence << " HP" << endl;
-			hp = hp + spell.GetHeal() + intelligence;
-			return spell.GetHeal() + intelligence;
-		}
-		else
-		{
-			cout << "The spell does " << spell.GetDamage() + intelligence << " magic damage" << endl;
-			return spell.GetDamage() + intelligence;
-		}
+		cout << "The spell does " << spell.GetDamage() + intelligence << " magic damage" << endl;
+		return spell.GetDamage() + intelligence;
 	}
-	void Defend()const override
+	void HealingSpell() override
 	{
+		cout << "The healing spell restores " << spell.GetHeal() + intelligence << " HP" << endl;
+		hp = hp + spell.GetHeal() + intelligence;
+	}
+	void Defend() override
+	{
+		defence += defence / 2;
 		cout << "The opponent regains stamina and raises defense by " << defence + defence / 2 << endl;
 	}
 	int GetHP()const override
@@ -561,13 +730,21 @@ public:
 	{
 		return intelligence;
 	}
-	/*Spell GetSpell()const override
-	{
-		return spell;
-	}*/
 	string GetName()const override
 	{
 		return name;
+	}
+	int GetMonsterDamage()const
+	{
+		return damage;
+	}
+	int GetMonsterHeal()const
+	{
+		return spell.GetHeal();
+	}
+	int GetMonsterMagicDamage()const
+	{
+		return spell.GetDamage();
 	}
 };
 
@@ -580,6 +757,7 @@ public:
 	Resources():quantity(0){}
 
 	virtual void Show()const = 0;
+	virtual int GetQuantity()const = 0;
 };
 
 
@@ -590,23 +768,19 @@ public:
 
 	void Show()const override
 	{
-		cout << "Quantity of gold: " << quantity << endl;
+		cout << "| Quantity of gold: " << quantity << endl;
 	}
 	void UpGoldCount(int count)
 	{
 		quantity += count;
 	}
-};
-
-
-class Coins :public Gold
-{
-public:
-	Coins():Gold(){}
-
-	void Show()const override
+	int GetQuantity()const override
 	{
-		cout << "Quantity of coins: " << quantity << endl;
+		return quantity;
+	}
+	void Exchange()
+	{
+		quantity--;
 	}
 };
 
@@ -618,10 +792,18 @@ public:
 
 	void Show()const override
 	{
-		cout << "Quantity of diamonds: " << quantity << endl;
+		cout << "| Quantity of diamonds: " << quantity << endl;
 	}
 	int DiamondsUpCount()
 	{
 		return quantity++;
+	}
+	int GetQuantity()const override
+	{
+		return quantity;
+	}
+	void SetDiamonds(int price)
+	{
+		quantity -= price;
 	}
 };
