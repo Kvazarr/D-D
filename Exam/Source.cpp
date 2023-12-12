@@ -9,9 +9,10 @@ int main()
 	srand((unsigned)time(NULL));
 	setlocale(LC_ALL, "russian");
 	string heroName;
-	cout << "Скажи свое имя, герой: "; cin >> heroName;
+	cout << "Enter your name, hero: "; cin >> heroName;
 
 	Story start(heroName);
+	start.Menu();
 	start.Priview();
 	start.ActI();
 }

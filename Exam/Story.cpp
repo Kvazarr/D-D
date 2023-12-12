@@ -1,13 +1,70 @@
 #include<iostream>
 #include<iomanip>
+#include<cstdlib>
 #include<conio.h>
+#include<Windows.h>
 #include"Story.h";
 using namespace std;
 
+
+void Story::Gotoxy(int x, int y)
+{
+    COORD coord;
+    coord.X = x;
+    coord.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+
+
 void Story::Menu()
 {
-	
+    system("cls");
+    int menu_item = 0, x = 11;
+    bool running = true;
+
+    Gotoxy(54, x); cout << "->";
+
+    while (running)
+    {
+        Gotoxy(56, 11);  cout << "Start";
+        Gotoxy(56, 12);  cout << "Exit";
+
+        system("pause>nul");
+
+        if (GetAsyncKeyState(VK_DOWN))
+        {
+            Gotoxy(54, x); cout << "  ";
+            x < 12 ? x++ : x = 11;
+            Gotoxy(54, x); cout << "->";
+            menu_item < 1 ? menu_item++ : menu_item = 0;
+            continue;
+
+        }
+        if (GetAsyncKeyState(VK_UP))
+        {
+            Gotoxy(54, x); cout << "  ";
+            x > 11 ? x-- : x = 12;
+            Gotoxy(54, x); cout << "->";
+            menu_item > 0 ? menu_item-- : menu_item = 1;
+            continue;
+        }
+        if (GetAsyncKeyState(VK_RETURN))
+        {
+            switch (menu_item)
+            {
+            case 0:
+                running = false;
+                break;
+            case 1:
+                system("cls");
+                cout << "Good bye.\n\n";
+                exit(EXIT_SUCCESS);
+            }
+        }
+    }
 }
+
+
 void Story::Priview()
 {
     system("cls");
@@ -34,23 +91,26 @@ void Story::ActI()
 {
     system("cls");
     cout << "\n\n\n\n\n\n";
-    cout << setw(75) << "===== Акт 1: Тени прошлого =====";
+    string line("===== Act I: Shadows of the Past =====");
+    CenterText(line);
     cout << "\n\n";
-    cout << "   Главный герой, отважный искатель приключений, отправляется в пещеры забытого подземелья в поисках сокровищ и славы."<<endl;
-    cout << "   В пыльных коридорах он обнаруживает древний свиток, раскрывающий загадку пробуждения древней темной души. Подсказки" << endl;
-    cout << "   на свитке ведут героя глубже в подземелье, где он сталкивается с призраками прошлого, стражами забытых тайн древних" << endl;
+    cout << "   The protagonist, a brave adventurer, ventures into the caverns of a forgotten dungeon in search of treasure and glory."<<endl;
+    cout << "   In dusty corridors,he discovers an ancient scroll that reveals the riddle of the awakening of an ancient dark soul.The" << endl;
+    cout << "   clues on the scroll lead the hero deeper into the dungeon, where he encounters the ghosts of the past,guardians of the" << endl;
+    cout << "   forgotten secrets of ancient. " << endl;
     cout << endl;
-    cout << "   В темных лабиринтах герой находит останки старых цивилизаций, покрытых паутиной времени. Здесь древние механизмы пр" << endl;
-    cout << "   обуждаются от долгого сна, создавая теневые маневры и ловушки. По стенах изгибаясь прыгают тени. Первый бой впереди" << endl;
+    cout << "   In dark labyrinths,  the  hero finds the remains of old civilizations covered with the cobwebs of time. Here,  ancient" << endl;
+    cout << "   mechanisms are recovering from their long sleep, creating shadowy maneuvers and traps. Shadows bend  and  bounce along" << endl;
+    cout << "   the walls. The first battle ahead." << endl;
     cout << "\n\n";
-    cout << "                                    ";
+    cout << "                                         ";
     system("pause");
     system("cls");
-    cout << "\n\n";
-    cout << "    Вы встретили вашего первого монстра в  игре. Бой проходит до тех пор, пока у игрока или  монстра не  останется HP" << endl;
-    cout << "    Каждый раунд вы делаете ход с выбором:  атаковать, потратив выносливость. Защититься и восстановить  выносливость" << endl;
-    cout << "    Использовать заклинание,  или выпить зелье. Заклинание так же тратит выносливость. С левой стороны консоли панель " << endl;
-    cout << "    игрока,справой панель противника. Покинуть бой нельзя, каждый из вас сражается до смерти. Да прибудет с вами сила" << endl;
+    cout << endl;
+    cout << "    You have encountered your first monster in the game.Combat takes place until either the player or the monster has" << endl;
+    cout << "    no HP remaining. Each round you take a turn with a choice:  attack by spending stamina. Defend and regain stamina" << endl;
+    cout << "    Use a spell or drink a potion. The spell also spends stamina. On the left side of the console is  a  panel player" << endl;
+    cout << "    right side of the enemy panel. You can't leave the battle, each of you is fighting to the death." << endl;
     hero.Show();
     system("pause");
     try
@@ -75,23 +135,24 @@ void Story::ActI()
     }
     system("cls");
     cout << "\n\n";
-    cout << "    После тяжелой победы коридор выводит героя из мрака,  на  глаза падает солнечный свет заставляя их кричать от боли,  но" << endl;
-    cout << "    боль  эта  приятная, она дает понять герою,  что он все еще жив.  По дороге в подземелье другие странники рассказывали," << endl;
-    cout << "    что в этих лесах, где оказался " << hero.GetName() << " есть деревня, где можно найти все, что нужно воину и страннику. " << endl;
+    cout << "    After a hard victory the corridor leads the hero out of the gloom,  the  sunlight falls on his eyes making them cry out" << endl;
+    cout << "    in pain, but this pain is pleasant, it makes the hero realize that he is still alive.  On the way to the dungeon, other" << endl;
+    cout << "    travelers told me, that in these woods where he found himself " << hero.GetName() << " there is a village where you can" << endl;
+    cout << "    find everything a warrior and wanderer needs." << endl;
     cout << endl;
-    cout << "    Спустя несколько часов перед героем открывается уютная деревня Затерянного Света, затерянной среди темных старых лесов." << endl;
-    cout << "    Утреннее солнце бросает свои первые лучи на крыши домов,окрашивая их в теплые оттенки.Узкие деревянные дорожки плетутся" << endl;
-    cout << "    среди живописных домов и садов. Возле центральной площади стоит старинная колодец, из которого поднимается свежая вода." << endl;
-    cout << "    Герой слышит далекие звуки куриных криков и детский смех,создавая атмосферу теплоты и безопасности.Аромат свежего хлеба" << endl;
-    cout << "    и лесных ягод наполняет воздух. Местные жители,  в цветущих одеяниях, приветствуют героя с улыбками. Крестьяне трудятся" << endl;
-    cout << "    на своих полях, а кузнец в своей мастерской занят созданием новых орудий труда.Вдоль улицы видны торговцы, предлагающие" << endl;
-    cout << "    товары, начиная от свежих продуктов до ручной работы изделий. Старейшины деревни приглашают героя в таверну, где звучит" << endl;
-    cout << "    веселая музыка, а аромат домашней кухни приглашает всех на обед." << endl;
+    cout << "    A few hours later, the cozy village of Lost Light, lost among the dark old forests,  opens before the hero. The morning" << endl;
+    cout << "    sun casts its first rays  on  the roofs of the houses, coloring them  in  warm shades. Narrow wooden paths weave amidst" << endl;
+    cout << "    picturesqu houses and gardens.Near the central square stands an ancient well from which fresh water rises.The character" << endl;
+    cout << "    hears the distant sounds of chicken cries and children's laughter, creating  an  atmosphere of warmth and security. The" << endl;
+    cout << "    aroma of fresh bread and forest berries fill the air. The locals, in blooming robes, greet  the  hero with smiles.  The " << endl;
+    cout << "    peasants labor in their fields, and the blacksmith in his workshop is busy making new implements.Along  the  street are " << endl;
+    cout << "    seen merchants offering goods ranging from fresh produce  to  handmade items.  The village elders invite  the hero to a " << endl;
+    cout << "    tavern where the sound of the cheerful music, and the aroma of home cooking invites everyone to dine." << endl;
     cout << endl;
-    cout << "    В этой безопасной зоне герой может отдохнуть,  пополнить запасы и получить необходимую информацию перед тем,  как снова" << endl;
-    cout << "    отправиться в мир приключений и  тайн  первого акта.  Пока зло живет в древних подземельях, эта земля не станет мирной." << endl;
-    cout << "    Из деревни можно отправить в подземелье на встречу боссу первого акта, зайти в магазин и купить новое снаряжение, пойти" << endl;
-    cout << "    в шахту чтобы добыть золота и драгоценностей или проверить доску объявлений, и взять заказ на монстра, получив награду." << endl<<endl;
+    cout << "    In this safe zone, the hero can rest, resupply, and get the information he needs before going back out again embrake on" << endl;
+    cout << "    a world of adventure and mystery  in the first act.  As long as evil lives  in  ancient dungeons, this land will not be" << endl;
+    cout << "    peaceful. From the village you can go to the dungeon to meet the boss of the first act,go to the store and buy new gear" << endl;
+    cout << "    go into the mine to get gold and jewelry or check the bulletin board and take an order for a monster, getting a reward." << endl<<endl;
     cout << "                                    ";
     system("pause");
     try

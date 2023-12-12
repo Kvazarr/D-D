@@ -1,25 +1,25 @@
-﻿  Source.cpp
-D:\Visual\Проекты\Exam_OOP\Exam\Source.cpp(3,9): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+﻿  Story.cpp
+D:\Visual\Проекты\Exam_OOP\Exam\Story.cpp(6,9): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
 D:\Visual\Проекты\Exam_OOP\Exam\Story.h(7,9): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
-  (компиляция исходного файла "Source.cpp")
+  (компиляция исходного файла "Story.cpp")
   
 D:\Visual\Проекты\Exam_OOP\Exam\GameObjects.h(37,10): warning C4804: >: небезопасное использование типа "bool" в операции
-  (компиляция исходного файла "Source.cpp")
+  (компиляция исходного файла "Story.cpp")
   
 D:\Visual\Проекты\Exam_OOP\Exam\GameObjects.h(621,6): warning C4552: "*": результат выражения не используется
-  (компиляция исходного файла "Source.cpp")
+  (компиляция исходного файла "Story.cpp")
   
 D:\Visual\Проекты\Exam_OOP\Exam\GameObjects.h(622,10): warning C4552: "*": результат выражения не используется
-  (компиляция исходного файла "Source.cpp")
+  (компиляция исходного файла "Story.cpp")
   
-D:\Visual\Проекты\Exam_OOP\Exam\Story.h(504,6): warning C4286: std::runtime_error &: перехвачено базовым классом ("std::exception &") в строке 497
-  (компиляция исходного файла "Source.cpp")
+D:\Visual\Проекты\Exam_OOP\Exam\Story.h(505,6): warning C4286: std::runtime_error &: перехвачено базовым классом ("std::exception &") в строке 498
+  (компиляция исходного файла "Story.cpp")
   
-D:\Visual\Проекты\Exam_OOP\Exam\Story.h(528,6): warning C4286: std::runtime_error &: перехвачено базовым классом ("std::exception &") в строке 521
-  (компиляция исходного файла "Source.cpp")
+D:\Visual\Проекты\Exam_OOP\Exam\Story.h(529,6): warning C4286: std::runtime_error &: перехвачено базовым классом ("std::exception &") в строке 522
+  (компиляция исходного файла "Story.cpp")
   
-D:\Visual\Проекты\Exam_OOP\Exam\Story.h(552,6): warning C4286: std::runtime_error &: перехвачено базовым классом ("std::exception &") в строке 545
-  (компиляция исходного файла "Source.cpp")
+D:\Visual\Проекты\Exam_OOP\Exam\Story.h(553,6): warning C4286: std::runtime_error &: перехвачено базовым классом ("std::exception &") в строке 546
+  (компиляция исходного файла "Story.cpp")
   
-D:\Visual\Проекты\Exam_OOP\Exam\Source.cpp(4,9): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+D:\Visual\Проекты\Exam_OOP\Exam\Story.cpp(170,5): warning C4286: std::logic_error &: перехвачено базовым классом ("std::exception &") в строке 162
   Exam.vcxproj -> D:\Visual\Проекты\Exam_OOP\Exam\x64\Debug\Exam.exe

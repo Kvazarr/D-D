@@ -6,6 +6,7 @@
 #include<thread>
 #include"GameObjects.h";
 
+
 class Story
 {
 private:
@@ -23,13 +24,13 @@ public:
 	Story(string name)
 	{
 		easeHealing = Spell();
-		heroSword = Weapon("Стальной меч", 10);
-		heroArmor = Armor("Пластинчатая броня", 3, 4, 1, 1);
-		heroShield = Shield("Железный щит", 30);
+		heroSword = Weapon("Steal sword", 10);
+		heroArmor = Armor("Plate armor", 3, 4, 1, 1);
+		heroShield = Shield("Iron shield", 30);
 		hero = Hero(name, easeHealing, 1, 65, 10, 150, 10, 10, 10, 5, heroSword, heroArmor, heroShield);
-		firstMonsterWeapon = Weapon("Кровавые когти", 7);
-		firstMonsterArmor = Armor("Костяной екзоскелет", 1, 3, 0, 0);
-		firstMonster = Monster("Мраколап", easeHealing, 1, 40, 10, 110, 12, 6, 1, 14, firstMonsterWeapon, firstMonsterArmor);
+		firstMonsterWeapon = Weapon("Bloody claws", 7);
+		firstMonsterArmor = Armor("Bone exoskeleton", 1, 3, 0, 0);
+		firstMonster = Monster("Darkclow", easeHealing, 1, 40, 10, 110, 12, 6, 1, 14, firstMonsterWeapon, firstMonsterArmor);
 		outfitHero();
 		try
 		{
@@ -67,7 +68,7 @@ public:
 		string opponenst2(firstMonster.GetName());
 		string vs = " VS ";
 		string line = opponents1 + vs + opponenst2;
-		string action = "a)Атаковать    b)Защищаться    c)Использовать заклинание";
+		string action = "a)Attack    b)Defend    c)Use spell";
 		char choice;
 		system("cls");
 		int countRounds(1);
@@ -119,7 +120,7 @@ public:
 			}
 			else
 			{
-				throw exception("Вы приняли неверное решение и лишились головы.");
+				throw exception("You made a bad decision and lost your head.");
 			}
 			if (firstMonster.IsAlive())
 			{
@@ -179,7 +180,7 @@ public:
 		string opponenst2(firstMonster.GetName());
 		string vs = " VS ";
 		string line = opponents1 + vs + opponenst2;
-		string action = "a)Атаковать    b)Защищаться    c)Использовать заклинание";
+		string action = "a)Attack    b)Defend    c)Use spell";
 		char choice;
 		system("cls");
 		int countRounds(1);
@@ -237,7 +238,7 @@ public:
 			}
 			else
 			{
-				throw exception("Вы приняли неверное решение и лишились головы.");
+				throw exception("You made a bad decision and lost your head.");
 			}
 			if (opponent.IsAlive())
 			{
@@ -303,19 +304,19 @@ public:
 		while (hero.IsAlive())
 		{
 			char sign;
-			string line("a)Подземелье    b)Взять заказ    c)Шахты    d)Магазин    e)Поспать    f)Инвентарь    g)Характеристики");
+			string line("a)Dungeon    b)Take an order    c)Mines    d)Shop    e)Rest    f)Inventory    g)Characteristics");
 
 			system("cls");
 			cout << endl;
 			CenterText("Village");
 			cout << "\n\n";
-			cout << setw(76) << "  Дом1       Дом2         Дом3\n";
-			cout << setw(74) << "   |          |            |\n";
-			cout << setw(74) << "   |          |            |\n";
-			cout << setw(76) << "Площадь --- Церковь --- Магазин\n";
-			cout << setw(74) << "   |          |            |\n";
-			cout << setw(74) << "   |          |            |\n";
-			cout << setw(76) << " Шахты     Таверна        Река\n";
+			cout << setw(78) << " House1     House2       House3\n";
+			cout << setw(75) << "   |          |            |\n";
+			cout << setw(75) << "   |          |            |\n";
+			cout << setw(76) << " Square --- Church  ---  Shop\n";
+			cout << setw(75) << "   |          |            |\n";
+			cout << setw(75) << "   |          |            |\n";
+			cout << setw(77) << " Mines      Tavern       River\n";
 			cout << "\n\n";
 			CenterText(line);
 			cout << ">>> "; cin >> sign;
@@ -323,26 +324,26 @@ public:
 			{
 				system("cls");
 				cout << endl;
-				cout << "    Моргрим изначально был великим воином, утратившим свое имя в бескрайних сражениях, Тень Забытого Героя теперь стала" << endl;
-				cout << "    древней тьмой, поглощенной бескрайними войнами. Его доспехи, когда-то блестящие и красочные,теперь пропитаны черным" << endl;
-				cout << "    мраком и искривлены в виде исковерканных теней." << endl << endl;
-				cout << "    Лицо Погребенного Воина скрыто под маской, высеченной из черного металла, и лишь слабые светящиеся глаза  проявляют " << endl;
-				cout << "    его потерянную личность. В руках он держит клинок, погруженный в бездонную тьму, способную поглотить свет. Его шаги " << endl;
-				cout << "    сотресают землю,  словно он несет на себе бремя тысячелетий бесконечных сражений, которые превратили его в  мертвую " << endl;
-				cout << "    великого героя, служившего правой рукой Легендарного короля" << endl;
+				cout << "    Morgrim was originally a great warrior who lost his name in the vast battles,  the Shadow of the Forgotten Hero now " << endl;
+				cout << "    became the an ancient darkness consumed by endless wars. His armor, once shiny and colorful, is now soaked in black" << endl;
+				cout << "    dark and twisted in the form of twisted shadows." << endl << endl;
+				cout << "    The face of the Buried Warrior is hidden beneath  a  mask carved from black metal,  and only the faint glowing eyes  " << endl;
+				cout << "    show the his lost identity.  In his hands he holds  a  blade plunged into a bottomless darkness that can swallow up " << endl;
+				cout << "    light.  His footsteps shake the earth  as  if it bore the burden of millennia of endless battles that had turned it  " << endl;
+				cout << "    into a dead the shadow of the great hero who served as the Legendary King's right hand." << endl;
 				cout << endl;
 				cout << "                                    ";
 				system("pause");
 
 				Spell bossSpell("Soul snatching", 0, 1090);
-				Weapon bossSword("Губитель", 200);
-				Armor bossArmor("Вуаль Бездны", 60, 80, 20, 20);
-				Boss boss("Моргрим, тень забытого героя", bossSpell, 30, 195, 10, 4500, 50, 50, 50, 45, bossSword, bossArmor);
+				Weapon bossSword("Destroyer", 200);
+				Armor bossArmor("The Veil of the Abyss", 60, 80, 20, 20);
+				Boss boss("Morgrim, shadow of a forgotten hero", bossSpell, 30, 195, 10, 4500, 50, 50, 50, 45, bossSword, bossArmor);
 				string opponents1(hero.GetName());
 				string opponenst2(boss.GetName());
 				string vs = " VS ";
 				string line = opponents1 + vs + opponenst2;
-				string action = "a)Атаковать    b)Защищаться    c)Использовать заклинание";
+				string action = "a)Attack    b)Defend    c)Use spell";
 				char choice;
 				system("cls");
 				int countRounds(1);
@@ -402,7 +403,7 @@ public:
 					}
 					else
 					{
-						throw exception("Вы приняли неверное решение и лишились головы.");
+						throw exception("You made a bad decision and lost your head.");
 					}
 					if (boss.IsAlive())
 					{
@@ -448,9 +449,7 @@ public:
 						cout << "The Morgrim has fallen." << endl;
 						Sleep(3);
 						hero.UpMonsterSouls();
-						hero.HeroLvlUp(1);
-						if (hero.GetMonsterSouls() >= 20)
-							hero.DarkSoulUp();
+						hero.HeroLvlUp(10);
 					}
 					if (!hero.IsAlive())
 					{
@@ -468,28 +467,30 @@ public:
 				Spell monsterSpell;
 				Monster monster;
 				char sign;
-				string line("a)Мраколап    b)Варгрим    c)Темный рыцарь");
+				string line("a)Darkclow    b)Vargrim    c)Dark Knight");
 
 				system("cls");
 				cout << endl;
-				cout << "    Выполняя заказы на монстров, которые завелись возле деревни вы получаете золото и уровни. Отдохните если нужно и в бой!" << endl;
+				CenterText("By fulfilling orders on monsters that have appeared near the village you get gold and levels.");
 				cout << endl<<endl;
-				cout << "    Мраколап - существо, скрытое в мраке ночи. Его когти, покрытые грязью и живностью, оставляют след в сердцах своих жертв" << endl;
-				cout << "    Он нападает из темных уголков, оставляя лишь шепоты страха в своем следе." << endl << endl;
-				cout << "    Варгрим - существо среднего ранга в демонической иерархии, но несмотря на свой средний статус,он представляет серьезную" << endl;
-				cout << "    угрозу. Его тело покрыто плотью, напоминающей черный доспех,а его крылья темного цвета могут незаметно мелькать во тьме" << endl<<endl;
-				cout << "    Темный рыцарь - воин из древней эпохи Легендарного короля.Тяжелые латы,испещренные рунами темной магии, излучаюь угрозу" << endl;
-				cout << "    а его мантия развевается по ветру, словно мрак, который его окружает, окутывая доспехи, чей  цвет напоминает чистую ночь" << endl<<endl;
+				cout << "    Darkclow - a creature hidden in the darkness of night.Its claws,covered in dirt and critters,leave a mark in the hearts" << endl;
+				cout << "    of its victims. He attacks from dark corners, leaving only whispers of fear in his wake." << endl << endl;
+				cout << "    Vargrim - a middle-ranking creature in the demonic hierarchy,  but despite his middle - ranking status, he represents a" << endl;
+				cout << "    serious menace.His body is covered in flesh that resembles black armor,and his dark-colored wings can flicker unnoticed" << endl;
+				cout << "    in the darkness. " << endl << endl;
+				cout << "    DarK knight - a warrior from the ancient era of the Legendary King.  Heavy armor, inscribed with runes  of  dark magic," << endl;
+				cout << "    radiates menace. His robe flutters in the wind like the darkness that surrounds him,  enveloping armor whose dark color" << endl;
+				cout << "    resembles pure night." << endl << endl;
 				CenterText(line);
 				cout << ">>>"; cin >> sign;
 
 				switch (sign)
 				{
 				case'a':
-					monsterWeapon = Weapon("Кровавые когти", hero.GetHeroWeaponDamage() - 1);
-					monsterArmor = Armor("Костяной екзоскелет", hero.GetHelm() - 1, hero.GetCorset() - 1, hero.GetGloves(), hero.GetGreaves());
+					monsterWeapon = Weapon("Bloody Clows", hero.GetHeroWeaponDamage() - 1);
+					monsterArmor = Armor("Bone exoskeleton", hero.GetHelm() - 1, hero.GetCorset() - 1, hero.GetGloves(), hero.GetGreaves());
 					monsterSpell = easeHealing;
-					monster = Monster("Мраколап", easeHealing, hero.GetLvl() - 1, hero.GetHeroDamage() - 1, 10, hero.GetHP(), hero.GetStr(), hero.GetAgl(), hero.GetIntl(), hero.GetHeroDefence(), monsterWeapon, monsterArmor);
+					monster = Monster("Darkclow", easeHealing, hero.GetLvl() - 1, hero.GetHeroDamage() - 1, 10, hero.GetHP(), hero.GetStr(), hero.GetAgl(), hero.GetIntl(), hero.GetHeroDefence(), monsterWeapon, monsterArmor);
 					try
 					{
 						Fight(monster);
@@ -510,10 +511,10 @@ public:
 					}
 					break;
 				case'b':
-					monsterWeapon = Weapon("Плеть огня", hero.GetHeroWeaponDamage() - 1);
-					monsterArmor = Armor("Эбонитовая кожа", hero.GetHelm() - 1, hero.GetCorset() - 1, hero.GetGloves(), hero.GetGreaves());
+					monsterWeapon = Weapon("The lash of fire", hero.GetHeroWeaponDamage() - 1);
+					monsterArmor = Armor("Ebonite skin", hero.GetHelm() - 1, hero.GetCorset() - 1, hero.GetGloves(), hero.GetGreaves());
 					monsterSpell = easeHealing;
-					monster = Monster("Варгрим", easeHealing, hero.GetLvl() - 1, hero.GetHeroDamage() - 1, 10, hero.GetHP(), hero.GetStr(), hero.GetAgl(), hero.GetIntl(), hero.GetHeroDefence(), monsterWeapon, monsterArmor);
+					monster = Monster("Vargrim", easeHealing, hero.GetLvl() - 1, hero.GetHeroDamage() - 1, 10, hero.GetHP(), hero.GetStr(), hero.GetAgl(), hero.GetIntl(), hero.GetHeroDefence(), monsterWeapon, monsterArmor);
 					try
 					{
 						Fight(monster);
@@ -534,10 +535,10 @@ public:
 					}
 					break;
 				case'c':
-					monsterWeapon = Weapon("Теневой клинок", hero.GetHeroWeaponDamage() - 1);
-					monsterArmor = Armor("Доспех ночи", hero.GetHelm() - 1, hero.GetCorset() - 2, hero.GetGloves(), hero.GetGreaves());
+					monsterWeapon = Weapon("Shadow Blade", hero.GetHeroWeaponDamage() - 1);
+					monsterArmor = Armor("The armor of the night", hero.GetHelm() - 1, hero.GetCorset() - 2, hero.GetGloves(), hero.GetGreaves());
 					monsterSpell = easeHealing;
-					monster = Monster("Темный рыцарь", easeHealing, hero.GetLvl(), hero.GetHeroDamage() - 1, 10, hero.GetHP(), hero.GetStr(), hero.GetAgl(), hero.GetIntl(), hero.GetHeroDefence(), monsterWeapon, monsterArmor);
+					monster = Monster("Dark Knight", easeHealing, hero.GetLvl(), hero.GetHeroDamage() - 1, 10, hero.GetHP(), hero.GetStr(), hero.GetAgl(), hero.GetIntl(), hero.GetHeroDefence(), monsterWeapon, monsterArmor);
 					try
 					{
 						Fight(monster);
@@ -559,7 +560,7 @@ public:
 					break;
 				default:
 					cout << endl;
-					cout << "Очень жаль что вам ничего не подошло. До новых встреч!" << endl;
+					cout << "I'm sorry you didn't get anything. See you again!" << endl;
 					Sleep(2);
 					break;
 				}
@@ -570,17 +571,17 @@ public:
 
 				system("cls");
 				cout << endl;
-				cout << "   Каждый час в шахтах равен одной вашей выносливости, и одному куску золотой руды, из которого получится 2 золотые монеты." << endl;
-				cout << "   Каждый десятый час в шахтах принесет вам драгоценность. В шахтах безопасно и нету монстров, но робота затрачивает  силы," << endl;
-				cout << "   которые можно будет восстановить в деревне, поспав. Золото и драгоценности нужны для торговли, так что работать придется" << endl << endl;
-				cout << "   На сколько часов вы хотите отправить в шахты?>>>"; cin >> time;
+				cout << "   Each hour in the mines equals one of your stamina,  and one piece of gold ore, which will produce  2  gold coins. Every" << endl;
+				cout << "   tenth hour in the mines will bring you a jewel. The mines are safe and there are no monsters, but the robot uses energy" << endl;
+				cout << "   that can be recovered in the village by sleeping.Gold and jewels are needed for trading,so you will have to work for it" << endl << endl;
+				cout << "   How many hours do you want to send to the mines?>>>"; cin >> time;
 				cout << endl;
 				if (time <= hero.GetEndurance())
 				{
-					cout << "Сходив в шахту вы добыли " << time << " кусков золотой руды";
+					cout << "When you went to the mine, you mined " << time << " chunks of gold ore";
 					if (time == 10)
 					{
-						cout << " и 1 бриллиант!" << endl << endl;
+						cout << " and 1 brilliant!" << endl << endl;
 						diamonds.DiamondsUpCount();
 						Sleep(2);
 					}
@@ -594,17 +595,17 @@ public:
 				}
 				else
 				{
-					throw logic_error("У вас не хватило сил для работы. Вы упали в обморок и убились об камень.");
+					throw logic_error("You didn't have the strength for the job. You fainted and killed yourself on a rock.");
 				}
 			}
 			else if (sign == 'd' || sign == 'D')
 			{
 				char sign;
-				string line("a) Оружие    b)Броня    c)Заклинания    d)Монеты");
+				string line("a)Weapon    b)Armor    c)Spells    d)Coins");
 
 				system("cls");
-				cout << "   В магазине вы можете преобрести новое оружие, броню и заклинания.  Также здесь можно обменять куски золотой руды на монеты" << endl;
-				cout << "   Некоторое оружие, броню и заклилание можно купить лишь имея с собой душу главного злодея этого акта, а также души монстров" << endl;
+				cout << "   In the store you can buy new weapons,armor and spells.Here you can also exchange pieces of gold ore for coins.Some weapons" << endl;
+				cout << "   armor,and spells can only be purchased by carrying the soul of the main villain of the act,as well as the soul of monsters" << endl;
 				cout << endl;
 				CenterText(line);
 				cout << ">>>"; cin >> sign;
@@ -612,23 +613,24 @@ public:
 				if (sign == 'a' || sign == 'A')
 				{
 					system("cls");
-					cout << "a) --- Меч из Черного железа(100 золотых) ---\n";
-					cout << "Этот меч выкован из материала древний цивилизации и найден в древних подземельях.О его пролшом почти ничего не известно" << endl << endl;
-					cout << "b) --- Меч Королевского Гвардейца(150 золотых, 1 бриллиант) ---\n";
-					cout << "Это меч одного из самых благородных и могущественных людей королевства, Королевского гвардейца,найденого на полях битвы" << endl << endl;
-					cout << "c) >>> Теневой Меч Призрака(200 золотых, 5 душ монстров) <<<\n\n";
-					cout << "Этот меч выполнен из призрачного металла, пропитанного теневой энергией. При ударе  он оставляет тень, которая движется" << endl;
-					cout << "а владелец может использовать ее для невидимых атак.  Сказано,  что  клинок способен взаимодействовать с душами умерших" << endl << endl;
-					cout << "d) >>> Меч Звездного Ветра(200 золотых, 5 бриллиантов) <<<\n";
-					cout << "Этот изогнутый клинок был создан из звездных материалов. При махе он оставляет за собой след вихря и обладает свойством" << endl;
-					cout << "Вызывать легкие ветра. Пассивный эффект: поднимает множитель брони от ловкости в  x2  за счет потока ветра вокруг героя" << endl << endl;
-					cout << "e) <<<-->>> Властитель теней: Меч легендарного короля(Душа Тьмы) <<<-->>>\n";
-					cout << "Этот меч, выкованный в безднах древности, представляет собой искусное сочетание зловещей красоты  и могущества. Лезвие," << endl;
-					cout << "словно сгусток ночи, источает неясный свет, создавая вокруг  себя  мерцающую ауру тьмы.  Золотые рукояти увиты темными " << endl;
-					cout << "кожаным шнуром, который служит напоминанием о безумии, поглотившем его великого создателя." << endl << endl;
-					cout << "Этот меч стал свидетелем бесчисленных сражений и погружен в самые мраки человеческой души. Поговаривают, что  владелец" << endl;
-					cout << "меча становится неизбежно пронизанным тьмой, впитывая в себя все темные силы, что когда-то затмили свет.Познав глубины" << endl;
-					cout << "безумия этот древний король владел оружием , способным оживить самые мрачные страхи и поглотить весь свет в мире." << endl;
+					cout << "a) --- Black Iron Sword (100 gold) ---\n";
+					cout << "This sword is forged from the material of an ancient civilization and found in ancient dungeons.There is almost nothing" << endl;
+					cout << "known about its history." << endl << endl;
+					cout << "b) --- Sword of the Kingsguard (150 gold, 1 diamond) ---\n";
+					cout << "This is the sword of one of the noblest and most powerful men in the kingdom,  a Kingsguard, found on the battlefields." << endl << endl;
+					cout << "c) >>> Shadow Ghost Sword (200 gold, 5 monster souls) <<<\n\n";
+					cout << "This sword is made of ghostly metal imbued with shadow energy. When struck,  it casts a shadow that moves in motion and" << endl;
+					cout << "the wielder can use it for invisible attacks.  The blade is said to be able to interact with the souls of the dead." << endl << endl;
+					cout << "d) >>> Sword of the Star Wind (200 gold, 5 diamonds) <<<\n";
+					cout << "This curved blade was created from stellar materials.When swung, it leaves a vortex trail behind it and has the ability" << endl;
+					cout << "to summon light winds. Passive effect:  raises the armor multiplier from dexterity due to the wind flow around the hero" << endl << endl;
+					cout << "e) <<<-->>> Lord of Shadows: Sword of the Legendary King (Soul of Darkness) <<<-->>>\n";
+					cout << "Forged in the abysses of antiquity, this sword is a skillful combination of sinister beauty and power. The blade,like a" << endl;
+					cout << "blob of night, it exudes an indistinct light, creating a flickering aura of darkness around it.  The golden handles are" << endl;
+					cout << "covered in dark with a leather cord that serves as a reminder of the madness that consumed its great creator." << endl;
+					cout << "This sword has witnessed countless battles and is steeped in the darkest recesses of the human soul.It is said that the" << endl;
+					cout << "wielder the sword becomes inevitably permeated with darkness,  absorbing all the dark forces that once overshadowed the" << endl;
+					cout << "light. Knowing the depths This ancient king wielded a weapon capable of reviving the darkest fears and nightmares. " << endl;
 					cout << endl;
 					cout << ">>>"; cin >> sign;
 					switch (sign)
@@ -636,72 +638,72 @@ public:
 					case 'a':
 						if (hero.GetMoney() >= 100)
 						{
-							hero.NewSword("Меч из Черного железа", 55);
+							hero.NewSword("Black Iron Sword", 55);
 							hero.SetMoney(100);
 						}
 						else
 						{
 							cout << endl;
-							cout << "У вас недостаточно средств. " << endl;
+							cout << "You don't have enough funds." << endl;
 							Sleep(2);
 						}
 						break;
 					case'b':
 						if (hero.GetMoney() >= 150 && diamonds.GetQuantity() >= 1)
 						{
-							hero.NewSword("Меч Королевского Гвардейца", 80);
+							hero.NewSword("Sword of the Kingsguard", 80);
 							hero.SetMoney(150);
 							diamonds.SetDiamonds(1);							
 						}
 						else
 						{
 							cout << endl;
-							cout << "У вас недостаточно средств. " << endl;
+							cout << "You don't have enough funds." << endl;
 							Sleep(2);							
 						}
 					case'c':
 						if (hero.GetMoney() >= 200 && hero.GetMonsterSouls())
 						{
-							hero.NewSword("Теневой Меч Призрака", 105);
+							hero.NewSword("Shadow Ghost Sword", 105);
 							hero.SetMoney(200);
 							hero.MonsterSoulsOrder(5);							
 						}
 						else
 						{
 							cout << endl;
-							cout << "У вас недостаточно средств. " << endl;
+							cout << "You don't have enough funds." << endl;
 							Sleep(2);
 						}
 						break;
 					case'd':
 						if (hero.GetMoney() >= 200 && diamonds.GetQuantity() >= 5)
 						{
-							hero.NewSword("Меч Звездного Ветра", 115);
+							hero.NewSword("Sword of the Star Wind(", 115);
 							hero.SetMoney(200);
 							diamonds.SetDiamonds(5);
 						}
 						else
 						{
 							cout << endl;
-							cout << "У вас недостаточно средств. " << endl;
+							cout << "You don't have enough funds." << endl;
 							Sleep(2);
 						}
 						break;
 					case'e':
 						if (hero.DarkSoul())
 						{
-							hero.NewSword("Властитель теней: Меч легендарного короля", 199);
+							hero.NewSword("Lord of Shadows: Sword of the Legendary King", 199);
 						}
 						else
 						{
 							cout << endl;
-							cout << "У вас недостаточно средств. " << endl;
+							cout << "You don't have enough funds." << endl;
 							Sleep(2);
 						}
 						break;
 					default:
 						cout << endl;
-						cout << "Очень жаль что вам ничего не подошло. До новых встреч!" << endl;
+						cout << "I'm sorry you didn't get anything. See you again!" << endl;
 						Sleep(2);
 						break;
 					}
@@ -709,23 +711,25 @@ public:
 				else if (sign == 'b' || sign == 'B')
 				{
 					system("cls");
-					cout << "a) --- Броня из Черных пластин(100 золотых) ---\n";
-					cout << "Броня которую носили рыцари древней цивилизации, очень древняя  но  все  еще  крепкая, неподдающаяся времени и гниению." << endl << endl;
-					cout << "b) --- Броня Королевского Гвардейца(150 золотых, 1 бриллиант) ---\n";
-					cout << "Броня могущественного и благородного воина, Королевского гвардейца,найденого на полях битвы. Выкована из лучшей  стали." << endl << endl;
-					cout << "c) >>> Теневой Доспех Призрака(200 золотых, 5 душ монстров) <<<\n";
-					cout << "Эта броня выполнена из призрачного металла, пропитанного теневой энергией. При ударе от  нее  отскакивает сгусток тени, " << endl;
-					cout << "а владелец может использовать ее для невидимых атак.  Сказано, что  доспехи способны взаимодействовать с душами умерших" << endl << endl;
-					cout << "d) >>> Доспехи Звездной Пыли(200 золотых, 5 бриллиантов) <<<\n";
-					cout << "Эта удивительная броня была сделана из звездных материалов. При контакте с доспехами она блестит светом  далеких  звезд" << endl;
-					cout << "обдувая рыцаря ветром. Пассивный эффект: поднимает множитель брони от ловкости в  x2  за счет потока ветра вокруг героя" << endl << endl;
-					cout << "e) <<<-->>> Мракоплетенные доспехи легендарного короля(Душа Тьмы) <<<-->>>\n";
-					cout << "Эти доспехи, созданные во времена,где тьма и безумие плели свои нити вместе,обрамлены таинственным обаянием  и угрозой" << endl;
-					cout << "Каждая латунная пластина этого доспеха словно пропитана мраком,и золотые узоры,переплетающиеся вдоль кирасы,напоминают" << endl;
-					cout << "о вихре теней. Носитель Мракоплетеных Доспехов чувствует, как тьма и безумие становятся частью его сущности.  Капюшон," << endl;
-					cout << "окаймленный золотом, скрывает лицо воина, создавая впечатление вечного мрака, из которого даже свету нету дороги назад" << endl;
-					cout << "Эти доспехи не просто защищают своего владельца от ударов, они становятся частью его самого существа,  придавая силу в" << endl;
-					cout << "порыве безумия. Те, кто осмеливается стать носителем Мракоплетеных Доспехов, погружаются во мрак навсегда. " << endl;
+					cout << "a) --- Black Plate Armor (100 gold) ---\n";
+					cout << "The armor worn by the knights of an ancient civilization, very ancient but still strong,  impervious to time and decay." << endl << endl;
+					cout << "b) --- Royal Guardsman Armor (150 gold, 1 diamond) ---\n";
+					cout << "The armor of a mighty and noble warrior, a Kingsguard, found on the battlefields. Forged from the finest steel." << endl << endl;
+					cout << "c) >>> Shadow Ghost Armor (200 gold, 5 monster souls) <<<\n";
+					cout << "This armor is made of ghostly metal imbued with shadow energy.  When struck,  it  bounces off a blob of shadow, and the" << endl;
+					cout << "wearer can use it for invisible attacks.  The armor is said to be able to interact with the souls of the dead." << endl << endl;
+					cout << "d) >>> Stardust Armor (200 gold, 5 diamonds) <<<\n";
+					cout << "This amazing armor was made from stellar materials. When it comes in contact with the armor, it glistens with the light" << endl;
+					cout << "of distant stars blowing wind around the knight. Passive effect:  raises the armor multiplier from dexterity due to the" << endl;
+					cout << "wind flow around the hero." << endl << endl;
+					cout << "e) <<<-->>> The darkwoven armor of the legendary king (Soul of Darkness) <<<-->>>\n";
+					cout << "This armor, created in a time where darkness and madness weave their threads together,is framed with a mysterious charm" << endl;
+					cout << "and menace. Each brass plate of this armor seems to be imbued with darkness,  and the golden patterns intertwined along" << endl;
+					cout << "the cuirass are reminiscent of the vortex of shadows.  The wearer of the Darkwoven Armor feels the darkness and madness" << endl;
+					cout << "become part of his essence.  Hood, fringed with gold,  hides the face of the warrior,  giving the impression of eternal" << endl;
+					cout << "darkness, from which even the light has no way back. This armor doesn't just protect its wearer from blows,  it becomes" << endl;
+					cout << "part of his very being, lending strength to the in a fit of madness.  Those who dare to become wearers of the Darkwoven" << endl;
+					cout << "Armor are plunged into darkness forever." << endl;
 					cout << endl;
 					cout << ">>>"; cin >> sign;
 					switch (sign)
@@ -733,73 +737,73 @@ public:
 					case 'a':
 						if (hero.GetMoney() >= 100)
 						{
-							hero.NewArmor("Броня из Черных пластин", 15, 20, 7, 7);
+							hero.NewArmor("Black Plate Armor", 15, 20, 7, 7);
 							hero.SetMoney(100);
 						}
 						else
 						{
 							cout << endl;
-							cout << "У вас недостаточно средств. " << endl;
+							cout << "You don't have enough funds." << endl;
 							Sleep(2);
 						}
 						break;
 					case'b':
 						if (hero.GetMoney() >= 150 && diamonds.GetQuantity() >= 1)
 						{
-							hero.NewArmor("Броня Королевского Гвардейца", 30, 45, 15, 15);
+							hero.NewArmor("Royal Guardsman Armor", 30, 45, 15, 15);
 							hero.SetMoney(150);
 							diamonds.SetDiamonds(1);
 						}
 						else
 						{
 							cout << endl;
-							cout << "У вас недостаточно средств. " << endl;
+							cout << "You don't have enough funds." << endl;
 							Sleep(2);
 						}
 						break;
 					case'c':
 						if (hero.GetMoney() >= 200 && hero.GetMonsterSouls())
 						{
-							hero.NewArmor("Теневой Доспех Призрака", 38, 58, 20, 20);
+							hero.NewArmor("Shadow Ghost Armor", 38, 58, 20, 20);
 							hero.SetMoney(200);
 							hero.MonsterSoulsOrder(5);
 						}
 						else
 						{
 							cout << endl;
-							cout << "У вас недостаточно средств. " << endl;
+							cout << "You don't have enough funds." << endl;
 							Sleep(2);
 						}
 						break;
 					case'd':
 						if (hero.GetMoney() >= 200 && diamonds.GetQuantity() >= 5)
 						{
-							hero.NewArmor("Доспехи Звездной Пыли", 34, 55, 18, 18);
+							hero.NewArmor("Stardust Armor", 34, 55, 18, 18);
 							hero.SetMoney(200);
 							diamonds.SetDiamonds(5);
 						}
 						else
 						{
 							cout << endl;
-							cout << "У вас недостаточно средств. " << endl;
+							cout << "You don't have enough funds." << endl;
 							Sleep(2);
 						}
 						break;
 					case'e':
 						if (hero.DarkSoul())
 						{
-							hero.NewArmor("Мракоплетенные доспехи легендарного короля", 65, 80, 45, 45);
+							hero.NewArmor("The Darkwoven Armor of the Legendary King", 65, 80, 45, 45);
 						}
 						else
 						{
 							cout << endl;
-							cout << "У вас недостаточно средств. " << endl;
+							cout << "You don't have enough funds." << endl;
 							Sleep(2);
 						}
 						break;
 					default:
 						cout << endl;
-						cout << "Очень жаль что вам ничего не подошло. До новых встреч!" << endl;
+						cout << "I'm sorry you didn't get anything. See you again!" << endl;
 						Sleep(2);
 						break;
 					}
@@ -807,16 +811,16 @@ public:
 				else if (sign == 'c' || sign == 'C')
 				{
 					system("cls");
-					cout << "a) --- Огненный Шар(50 золотых, 1 бриллиант) ---\n";
-					cout << "Выпускает шар огня в противника. Самое простое из атакующий заклинаний" << endl << endl;
-					cout << "b) --> Среднее Исциление(100 золотых, 2 бриллиант) <--\n";
-					cout << "Исцеление средный силы. Затягивает большинство серьезных ран, восстанавливает силы." << endl << endl;
-					cout << "c) --> Шаровая Молния(100 золотых, 2 бриллианта) <--\n";
-					cout << "Атакующая магия среднего уровня. Составляет серьезную угрозу и поражает большую область." << endl << endl;
-					cout << "d) >>> Мощное Исцеление(150 золотых, 3 бриллиантов) <<<\n";
-					cout << "Древняя, очень мощная магия.Говорят людей ее научили ангелы.Способна излечить самые страшные раны,отрастить конечности" << endl << endl;
-					cout << "e) >>> Вытягивание души(Душа Тьмы) <<<\n";
-					cout << "Проклятая древняя магия легендарного короля. Несет катострофическую угрозу целему королевству." << endl;
+					cout << "a) --- Fireball (50 gold, 1 diamond) ---\n";
+					cout << "Fires a fireball at an enemy. The simplest of the attack spells." << endl << endl;
+					cout << "b) --> Medium Exquisition (100 gold, 2 diamonds) <--\n";
+					cout << "Healing of medium strength. Heals most serious wounds, restores strength." << endl << endl;
+					cout << "c) --> Ball Lightning (100 gold, 2 diamonds) <--\n";
+					cout << "Medium level attack magic. Poses a serious threat and affects a large area." << endl << endl;
+					cout << "d) >>> Powerful Healing (150 gold, 3 diamonds) <<<\n";
+					cout << "Ancient, very powerful magic. They say it was taught to humans by angels. Can heal the worst wounds, regrow limbs." << endl << endl;
+					cout << "e) >>> Soul Pulling (Soul of Darkness) <<<\n";
+					cout << "The cursed ancient magic of a legendary king. It poses a catastrophic threat to the target kingdom." << endl;
 					cout << endl;
 					cout << ">>>"; cin >> sign;
 					switch (sign)
@@ -831,7 +835,7 @@ public:
 						else
 						{
 							cout << endl;
-							cout << "У вас недостаточно средств. " << endl;
+							cout << "You don't have enough funds." << endl;
 							Sleep(2);
 						}
 						break;
@@ -845,7 +849,7 @@ public:
 						else
 						{
 							cout << endl;
-							cout << "У вас недостаточно средств. " << endl;
+							cout << "You don't have enough funds." << endl;
 							Sleep(2);
 						}
 						break;
@@ -859,7 +863,7 @@ public:
 						else
 						{
 							cout << endl;
-							cout << "У вас недостаточно средств. " << endl;
+							cout << "You don't have enough funds." << endl;
 							Sleep(2);
 						}
 						break;
@@ -873,7 +877,7 @@ public:
 						else
 						{
 							cout << endl;
-							cout << "У вас недостаточно средств. " << endl;
+							cout << "You don't have enough funds." << endl;
 							Sleep(2);
 						}
 						break;
@@ -885,13 +889,13 @@ public:
 						else
 						{
 							cout << endl;
-							cout << "У вас недостаточно средств. " << endl;
+							cout << "You don't have enough funds." << endl;
 							Sleep(2);
 						}
 						break;
 					default:
 						cout << endl;
-						cout << "Очень жаль что вам ничего не подошло. До новых встреч!" << endl;
+						cout << "I'm sorry you didn't get anything. See you again!" << endl;
 						Sleep(2);
 						break;
 					}
@@ -909,7 +913,7 @@ public:
 					else
 					{
 						cout << endl;
-						cout << "У вас недостаточно золота. " << endl;
+						cout << "You don't have enough gold ore. " << endl;
 						Sleep(2);
 					}
 				}
@@ -919,7 +923,7 @@ public:
 				hero.SetEndurance();
 				hero.Resting();
 				system("cls");
-				cout << "Выносливость и здоровье полностью восстановлена." << endl;
+				cout << "Stamina and health fully restored." << endl;
 				Sleep(2);
 			}
 			else if (sign == 'f' || sign == 'F')
@@ -943,10 +947,11 @@ public:
 			}
 			else
 			{
-				throw exception("Вы потерялись и утонули в реке. ");
+				throw exception("You got lost and drowned in the river.");
 			}
 		}
 	}
+	void Gotoxy(int x, int y);
 	void Priview();
 	void Menu();
 	void ActI();
